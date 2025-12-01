@@ -1,0 +1,433 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FF6F30;
+  --color-secondary: #222629;
+  --color-accent: #007BFF;
+  --color-light: #ffffff;
+
+  --font-sans: "Roboto", -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-roboto: "Roboto", sans-serif;
+  --font-lobster: "Lobster", cursive;
+
+  --animate-fade-in: fadeIn 0.5s ease-in-out;
+  --animate-slide-up: slideUp 0.5s ease-out;
+  --animate-bounce-in: bounceIn 0.6s ease-out;
+  --animate-pulse-slow: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-wishlist-bounce: wishlistBounce 0.6s ease-out;
+  --animate-shimmer: shimmer 2s infinite;
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(20px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes bounceIn {
+    0% {
+      transform: scale(0.3);
+      opacity: 0;
+    }
+
+    50% {
+      transform: scale(1.05);
+    }
+
+    70% {
+      transform: scale(0.9);
+    }
+
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes wishlistBounce {
+    0% {
+      transform: scale(1);
+    }
+
+    25% {
+      transform: scale(1.2);
+    }
+
+    50% {
+      transform: scale(0.9);
+    }
+
+    75% {
+      transform: scale(1.1);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+
+    100% {
+      transform: translateX(100%);
+    }
+  }
+}
+
+/* Font mặc định cho toàn bộ dự án là Roboto */
+body {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  @apply text-secondary;
+  background-color: #FFFBF7;
+}
+
+/* Đảm bảo tất cả elements mặc định dùng Roboto */
+* {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Đảm bảo các thẻ HTML chính cũng dùng Roboto */
+h1, h2, h3, h4, h5, h6, p, span, div, a, button, input, textarea, select, label {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Cursor pointer cho tất cả elements có thể click */
+button,
+a,
+[role="button"],
+label[for],
+.cursor-pointer,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"] {
+  cursor: pointer;
+}
+
+/* Cursor pointer cho elements có onClick handler (được xử lý bởi className) */
+div[onclick],
+span[onclick],
+*[onclick]:not(input):not(textarea) {
+  cursor: pointer;
+}
+
+@layer utilities {
+  /* Chỉ những element có class font-lobster mới dùng Lobster - Đặt trong @layer utilities để có độ ưu tiên cao */
+  .font-lobster,
+  .font-lobster *,
+  a.font-lobster,
+  span.font-lobster,
+  div.font-lobster,
+  button.font-lobster,
+  .font-lobster a,
+  .font-lobster span,
+  .font-lobster div,
+  .font-lobster button,
+  .font-lobster h1,
+  .font-lobster h2,
+  .font-lobster h3,
+  .font-lobster h4,
+  .font-lobster h5,
+  .font-lobster h6,
+  .font-lobster p {
+    font-family: var(--font-lobster), 'Lobster', cursive !important;
+  }
+  @keyframes slideInRight {
+    from {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-slideInRight {
+    animation: slideInRight 0.5s ease-out forwards;
+  }
+
+  /* Thêm animation mới cho nút Help */
+  @keyframes pulse-slow {
+
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(255, 111, 48, 0.4);
+    }
+
+    50% {
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(255, 111, 48, 0);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 2s infinite;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.9s ease-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  @keyframes zoom-in-effect {
+    from {
+      transform: scale(1);
+    }
+
+    to {
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes cart-bounce {
+
+    0%,
+    100% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.4);
+    }
+  }
+
+  .animate-cart-bounce {
+    animation: cart-bounce 0.5s ease-in-out;
+  }
+
+  /* Flash effect for cart count when items are added */
+  @keyframes cart-count-flash {
+    0% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.8);
+      background-color: #ef4444;
+    }
+
+    50% {
+      box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+      background-color: #ef4444;
+    }
+
+    100% {
+      box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+      background-color: #ef4444;
+    }
+  }
+
+  .animate-cart-count-flash {
+    animation: cart-count-flash 0.6s ease-out;
+  }
+}
+
+.hero-slider {
+  /* Để đổi màu, thay đổi mã màu ở đây */
+  --swiper-navigation-color: #c2c2c2;
+  /* Màu cam primary của bạn */
+
+  /* Để thay đổi kích thước, thay đổi giá trị ở đây */
+  --swiper-navigation-size: 20px;
+}
+
+.hero-slider .swiper-slide-active .hero-slide-bg {
+  animation: none !important;
+}
+
+/* Custom pagination styles for Features carousel */
+.features-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.features-swiper .swiper-pagination-bullet {
+  width: 10px;
+  height: 10px;
+  background: #e5e7eb;
+  opacity: 1;
+  transition: all 0.3s ease;
+}
+
+.features-swiper .swiper-pagination-bullet-active {
+  background: #FF6F30;
+  width: 24px;
+  border-radius: 5px;
+}
+
+/* Fix shadow clipping in FeaturedSection Swiper */
+.featured-section-swiper,
+.featured-section-swiper .swiper-wrapper,
+.featured-section-swiper .swiper-slide {
+  overflow: visible !important;
+}
+
+.featured-section-swiper {
+  padding-bottom: 2rem !important;
+}
+
+/* Ensure all ProductCards in Swiper have same height */
+.featured-section-swiper .swiper-wrapper {
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.featured-section-swiper .swiper-slide {
+  height: auto !important;
+  display: flex !important;
+  align-items: stretch !important;
+}
+
+.featured-section-swiper .swiper-slide > div {
+  width: 100%;
+  display: flex;
+  align-items: stretch;
+}
+
+.featured-section-swiper .swiper-slide .bg-white {
+  width: 100%;
+  height: 100%;
+}
+
+/* Ensure only 2 slides visible on mobile without showing partial third slide */
+@media (max-width: 639px) {
+  .featured-section-swiper .swiper-wrapper {
+    width: 100% !important;
+  }
+  
+  .featured-section-swiper {
+    overflow: hidden !important;
+  }
+  
+  .featured-section-swiper .swiper-wrapper {
+    overflow: visible !important;
+  }
+}
+
+/* MUI Skeleton với gradient shimmer effect */
+.MuiSkeleton-root {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(90deg, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+  background-size: 200% 100%;
+  animation: skeleton-shimmer 2s infinite;
+}
+
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Shadow nổi khối cho thẻ món ăn */
+.product-card-shadow {
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.product-card-shadow:hover {
+  box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15), 0 15px 20px -8px rgba(0, 0, 0, 0.12);
+}
+
+/* Hiệu ứng nút thêm món: nền lõm và icon nổi */
+.add-to-cart-button-wrapper {
+  background: linear-gradient(135deg, #e8e8e8 0%, #f0f0f0 100%);
+  box-shadow:
+    inset 0 4px 8px rgba(0, 0, 0, 0.2),
+    inset 0 2px 4px rgba(0, 0, 0, 0.15),
+    inset 0 1px 2px rgba(0, 0, 0, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.add-to-cart-button {
+  position: relative;
+  z-index: 1;
+}
+
+.add-to-cart-button svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2)) drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
+}
+
+.add-to-cart-button:hover {
+  transform: translateY(-1px);
+}
+
+.add-to-cart-button:hover svg {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.25)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* CategorySlider - Ensure full display of categories */
+.category-swiper {
+  overflow: visible !important;
+  width: 100% !important;
+}
+
+.category-swiper .swiper-wrapper {
+  display: flex !important;
+  align-items: center !important;
+}
+
+.category-swiper .swiper-slide {
+  width: auto !important;
+  flex-shrink: 0 !important;
+}
+
+/* Ensure first and last slides are fully visible on mobile */
+@media (max-width: 767px) {
+  .category-swiper {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
