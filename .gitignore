@@ -12,6 +12,20 @@ dist
 dist-ssr
 *.local
 
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Batch files (Windows scripts)
+*.bat
+
+# Test and error files
+test-*.js
+ts_errors.txt
+*.test.js
+*.spec.js
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
