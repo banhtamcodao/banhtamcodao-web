@@ -3,12 +3,12 @@ import { Home, Menu, ShoppingCart, ClipboardList, User } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 export default function FooterNav() {
-    const { totalItems } = useCart();
+    const { cartCount } = useCart();
 
     const navItems = [
         { icon: Home, label: 'Trang chủ', path: '/' },
         { icon: Menu, label: 'Thực đơn', path: '/menu' },
-        { icon: ShoppingCart, label: 'Giỏ hàng', path: '/cart', badge: totalItems },
+        { icon: ShoppingCart, label: 'Giỏ hàng', path: '/cart', badge: cartCount },
         { icon: ClipboardList, label: 'Đơn hàng', path: '/order-tracking' },
         { icon: User, label: 'Tài khoản', path: '/account' },
     ];

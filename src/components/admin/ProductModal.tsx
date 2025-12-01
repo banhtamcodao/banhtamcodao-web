@@ -99,7 +99,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
         };
 
         let error;
-        if (isEditMode) {
+        if (isEditMode && productToEdit) {
             // Update
             const { error: updateError } = await supabase
                 .from('products')
@@ -130,7 +130,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
             <div className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-white rounded-xl shadow-2xl flex flex-col">
                 <div className="flex items-center justify-between p-4 border-b border-gray-100 sticky top-0 bg-white z-10">
                     <h2 className="text-lg font-bold text-gray-900">
-                        {isEditMode ? `Chỉnh Sửa: ${productToEdit.name}` : 'Thêm Sản Phẩm Mới'}
+                        {isEditMode && productToEdit ? `Chỉnh Sửa: ${productToEdit.name}` : 'Thêm Sản Phẩm Mới'}
                     </h2>
                     <button onClick={onClose} className="p-2 rounded-full hover:bg-gray-100 transition-colors">
                         <X size={20} />
@@ -158,7 +158,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     <input
                                         type="text"
                                         name="slug"
-                                        value={product.slug}
+                                        value={product.slug || ''}
                                         onChange={handleInputChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-500 focus:outline-none"
                                     />
@@ -168,7 +168,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Mô Tả</label>
                                     <textarea
                                         name="description"
-                                        value={product.description}
+                                        value={product.description || ''}
                                         onChange={handleInputChange}
                                         rows={3}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
@@ -222,7 +222,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     <input
                                         type="number"
                                         name="discount_price"
-                                        value={product.discount_price}
+                                        value={product.discount_price || 0}
                                         onChange={handleInputChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
                                     />
@@ -253,7 +253,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     type="text"
                                     name="image_url"
                                     placeholder="Dán URL ảnh vào đây"
-                                    value={product.image_url}
+                                    value={product.image_url || ''}
                                     onChange={handleInputChange}
                                     className="w-full max-w-md px-3 py-2 text-sm border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all text-center"
                                 />

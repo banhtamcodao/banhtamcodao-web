@@ -78,7 +78,7 @@ export default function Features() {
                         }}
                         className="features-swiper !pb-12"
                     >
-                        {features.map(({ Icon, title, description, accent }, index) => (
+                        {features.map(({ Icon, title, accent }, index) => (
                             <SwiperSlide key={title}>
                                 <motion.article
                                     className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/90 p-5 sm:p-6 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.45)] backdrop-blur-sm transition-all duration-300 ease-out hover:border-primary/30 hover:bg-white"
@@ -100,9 +100,6 @@ export default function Features() {
                                             <h3 className="text-lg font-semibold text-secondary sm:text-xl lg:text-2xl">
                                                 {title}
                                             </h3>
-                                            <p className="text-sm text-slate-500 sm:text-base">
-                                                {description}
-                                            </p>
                                         </div>
                                     </div>
 
@@ -120,7 +117,7 @@ export default function Features() {
 
                 {/* Desktop Grid - chỉ hiển thị trên tablet và desktop */}
                 <div className="hidden md:grid md:grid-cols-2 xl:grid-cols-3 gap-4">
-                    {features.map(({ Icon, title, description, accent }, index) => (
+                    {features.map(({ Icon, title, accent }, index) => (
                         <motion.article
                             key={title}
                             className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/90 p-5 sm:p-6 shadow-[0_18px_45px_-25px_rgba(15,23,42,0.45)] backdrop-blur-sm transition-all duration-300 ease-out hover:border-primary/30 hover:bg-white"
@@ -139,9 +136,6 @@ export default function Features() {
                                     <h3 className="text-lg font-semibold text-secondary sm:text-xl lg:text-2xl">
                                         {title}
                                     </h3>
-                                    <p className="text-sm text-slate-500 sm:text-base">
-                                        {description}
-                                    </p>
                                 </div>
                             </div>
 
