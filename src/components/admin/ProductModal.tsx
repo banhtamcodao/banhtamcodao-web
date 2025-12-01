@@ -147,7 +147,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     <input
                                         type="text"
                                         name="name"
-                                        value={product.name}
+                                        value={product.name || ''}
                                         onChange={handleInputChange}
                                         required
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"
@@ -182,7 +182,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     <label className="block text-sm font-medium text-gray-700 mb-1">Trạng Thái</label>
                                     <select
                                         name="status"
-                                        value={product.status}
+                                        value={product.status || 'active'}
                                         onChange={handleInputChange}
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all bg-white"
                                     >
@@ -211,7 +211,7 @@ export default function ProductModal({ product: productToEdit, categories, onClo
                                     <input
                                         type="number"
                                         name="price"
-                                        value={product.price}
+                                        value={product.price || 0}
                                         onChange={handleInputChange}
                                         required
                                         className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"

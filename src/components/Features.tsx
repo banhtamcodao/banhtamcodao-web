@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, type Variants } from 'framer-motion';
 import { Truck, CreditCard, Award } from 'lucide-react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -23,7 +23,7 @@ const features = [
     },
 ];
 
-const containerVariants: import('framer-motion').Variants = {
+const containerVariants: Variants = {
     hidden: { opacity: 0, y: 24 },
     visible: {
         opacity: 1,
@@ -37,7 +37,7 @@ const containerVariants: import('framer-motion').Variants = {
     },
 };
 
-const cardVariants: import('framer-motion').Variants = {
+const cardVariants: Variants = {
     hidden: { opacity: 0, y: 32 },
     visible: {
         opacity: 1,
