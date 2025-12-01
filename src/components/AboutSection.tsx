@@ -1,4 +1,3 @@
-import { ClassNames } from '@emotion/react';
 import { motion } from 'framer-motion';
 
 export default function AboutSection() {
